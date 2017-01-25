@@ -1,0 +1,42 @@
+<style>
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: 100%;
+        width: 100%;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        background: linear-gradient(to bottom, #3c3c3c 0,#222 100%);
+    }
+
+    #login-range {
+        background: silver;
+        padding: 30px;
+        border-radius: 3px;
+    }
+
+    .sign-in-text {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: large;
+    }
+
+    .input-lg {
+        margin-top: 20px;
+    }
+
+    .btn-block {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="bs-docs-header" id="login-range">
+            <div class="login">
+                <p class="sign-in-text">Please Sign in</p>
+                <input class="form-control input-lg" type="email" ng-model="userPassword" placeholder="Email" autofocus>
+                <input class="form-control input-lg" type="password" ng-model="mail" placeholder="Password">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login(userPassword, mail)">Sign in</button>
+            </div>
+        </div>
+    </div>
+</div>

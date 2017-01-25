@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /game                       controllers.Application.game()
+GET     /rules                      controllers.Application.rules()
+GET		/socket						controllers.Application.connectWebSocket()
+GET     /signIn/:m/:p               controllers.Application.signIn(m: String, p: String)
+
+GET 	/command/:commandline		controllers.Application.commandline(commandline:String)
+
+POST    /json/:commandline          controllers.Application.jsonCommand(commandline:String)
+POST    /json                       controllers.Application.getJson()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

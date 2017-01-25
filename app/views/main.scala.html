@@ -1,0 +1,40 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/tailchase.png")'>
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
+
+
+        <meta name="google-signin-client_id" content="588635223804-fjofprfq5eg81u6tl0kha867eagt8sns.apps.googleusercontent.com.apps.googleusercontent.com">
+
+        <link rel="import" href='@routes.Assets.at("polymer/polymer.html")'>
+        <link rel="import" href='@routes.Assets.at("elements/dog-navbar.html")'>
+        <link rel="import" href='@routes.Assets.at("elements/dog-footer.html")'>
+
+
+    </head>
+
+
+    <body id="body">
+
+        <dog-navbar></dog-navbar>
+
+        <div id="content">
+        @content
+        </div>
+
+        <dog-footer></dog-footer>
+    </body>
+</html>

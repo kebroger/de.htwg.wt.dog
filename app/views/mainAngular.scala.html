@@ -1,0 +1,40 @@
+@(title: String)(content: Html)
+
+<html ng-app="dogApp">
+    <head>
+        <title>@title</title>
+
+        <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/tailchase.png")'>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+            <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
+
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/services/redirectService.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/controller/redirectCtrl.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/services/authService.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/controller/authCtrl.js")" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div>
+            <div ui-view>
+            </div>
+        </div>
+    </body>
+</html>

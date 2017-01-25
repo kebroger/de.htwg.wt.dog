@@ -1,0 +1,26 @@
+@(controller: de.htwg.dog.controller.IController)
+
+@main("Dog") {
+
+    <style>
+        .li{
+            text-indent:20px;
+            margin-left:20px;
+        }
+    </style>
+
+    <div style="padding: 40px; max-width: 800px">
+            <h3>Rules</h3>
+            <p>The first player who reaches the destination with all his tokens is the winner.</p>
+            <br><br>
+            <p>Move according to this list:</p>
+        <ul>
+            <li>2 - 10: Move according to card value.</li>
+            <li>Jack: Switch your token with one from another player.</li>
+            <li>Queen: Move 12 squares.</li>
+            <li>King: Move 13 squares or bring one token into the game.</li>
+            <li>Ace: Move 1 square or bring one token into the game.</li>
+            <li>Joker: Use as any other card.</li>
+        </ul>
+    </div>
+}

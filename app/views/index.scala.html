@@ -1,0 +1,167 @@
+@(user: String,controller: de.htwg.dog.controller.IController)
+
+@playerColor(playerNo: Int) = @{
+    playerNo match {
+        case 0 => "background: yellow"
+        case 1 => "background: blue"
+        case 2 => "background: green"
+        case 3 => "background: cyan"
+        case default => ""
+    }
+}
+
+@selectedSquare(square: String) = @{
+    var selected = ""
+    if(controller.getSelectedSquare(1) == square)
+        selected = "selected1"
+
+    if(controller.getSelectedSquare(2) == square)
+        selected = "selected2"
+
+    selected
+}
+
+@selectedCard(card: String) = @{
+    var selected = ""
+    if(controller.getSelectedCard() == card)
+        selected = "selected"
+
+    selected
+}
+
+@squareColor(square: String) = @{
+    var color = ""
+    for(player <- 0 until controller.getPlayerCnt)
+        if(controller.getOccupiedSquares(player).contains(square))
+            color = playerColor(player)
+    color
+}
+
+@squareToken(square: String) = @{
+    var token = ""
+    for(player <- 0 until controller.getPlayerCnt)
+        if(controller.getOccupiedSquares(player).contains(square))
+            token = "●"
+    token
+}
+
+@squarePos(angle: Double, radius: Double) = @{
+    var x = radius * Math.cos(angle);
+    var y = radius * Math.sin(angle);
+
+    "top: calc(" + (50.0 + y) + "% - 4.5%/2); " +
+            "left: calc(" + (50.0 + x) + "% - 4.5%/2);"
+}
+
+
+@main("Dog") {
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")">
+    <script type='text/javascript' src='@routes.Assets.at("javascripts/ajax.js")'></script>
+    <script type='text/javascript' src='@routes.Assets.at("javascripts/index.js")'></script>
+
+    <div id="wrapper">
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">Game Configuration</li>
+                <p>Number of Players</p>
+                <input class="text-center" id="playerCnt" value="@(
+                        controller.getPlayerCnt
+                        )"/>
+                <p>Number of Squares</p>
+                <input class="text-center" id="squaresCnt" value="@(
+                        controller.getSquareCnt
+                        )"/>
+                <p>Tokens per user</p>
+                <input class="text-center" id="tokenCnt" value="@(
+                        controller.getTokenCnt
+                        )"/>
+                <br><br>
+                <li><a id="saveConfig")>Save Configuration</a></li>
+                <li><a href="/command/new")>Start New Game</a></li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+            <div id="flexbox">
+                <ul class="left">
+                    <li><h4 style="cursor: pointer" onclick="openNav()">&#9776; Menu</h4></li>
+                    <li><a onclick="send('discard')">Discard Cards</a></li>
+                    <li><a onclick="send('turn')">Do Turn</a></li>
+                    <li><div id="cards"></div></li>
+                </ul>
+
+                <div id="draw">
+                    <h4 id="currentUser">Hello @user</h4>
+                    <h4 id="currentPlayer">Player</h4>
+                    <h5 id="info"></h5>
+                    <img id="back" src="@routes.Assets.at("images/tailchase.png")">
+                    @for(square <- 0 until controller.getSquareCnt) {
+                        <div class="field @selectedSquare("S" + square)"
+                        id="S@square" onclick="send('square,S@square')" style="
+                            @{
+                                var step = 2 * Math.PI / controller.getSquareCnt();
+                                var angle = Math.toRadians(270.0) + (square * step);
+
+                                squarePos(angle, 39.0) + squareColor("S" + square)
+                            }"> @squareToken("S" + square)
+                        </div>
+                    }
+                    @for(player <- 0 until controller.getPlayerCnt) {
+                        @for(token <- 0 until controller.getTokenCnt) {
+                            <div class="field @selectedSquare("H" + token + "P" + player)"
+                            id="H@(token)P@(player)"
+                            onclick="send('square,H@(token)P@(player)')" style="
+                                @{
+                                    var step = 2 * Math.PI / controller.getSquareCnt();
+                                    var step2= 2 * Math.PI / 48;
+                                    var angle = Math.toRadians(270.0) + (controller.getSquareCnt() / controller.getPlayerCnt() * player * step);
+                                    angle = angle - (token * step2);
+                                    squarePos(angle, 45.0) + playerColor(player)
+                                }"> @squareToken("H" + token + "P" + player)
+                        </div>
+
+                <div class="field @selectedSquare("F" + token + "P" + player)"
+                id="F@(token)P@(player)"
+                onclick="send('square,F@(token)P@(player)')" style="
+                    @{
+                        var step = 2 * Math.PI / controller.getSquareCnt();
+                        var angle = Math.toRadians(270.0) + (controller.getSquareCnt() / controller.getPlayerCnt() * player * step);
+                        var radius = 33.0 - (token * 6);
+                        squarePos(angle, radius) + playerColor(player)
+                    }"> @squareToken("F" + token + "P" + player)
+            </div>
+            }
+            }
+        </div>
+    </div>
+    </div>
+    </div>
+    <script>
+            function openNav() {
+                $("#wrapper").toggleClass("toggled");
+            }
+
+            $('#saveConfig').click( function() {
+                var p = $("#playerCnt").val();
+                var s = $("#squaresCnt").val();
+                var t = $("#tokenCnt").val();
+                $.post("/json/configure," + p + "," + s + "," + t, function (data) {
+                });
+            });
+
+            $(document).ready(function() {
+                $.post("/json", function (data) {
+                    var msg = JSON.parse(data);
+                    fillSquares(msg);
+                });
+            });
+
+            function send(command) {
+                $.post("/json/" + command, function (data) {
+                    var msg = JSON.parse(data);
+                    fillSquares(msg);
+                });
+            }
+    </script>
+}

@@ -1,0 +1,230 @@
+/* Toggle Styles */
+
+.field {
+  border-radius: 50%;
+  border: medium solid #222;
+  box-shadow: 0 0 1px 1px #222;
+  width: 4.5%;
+  height: 4.5%;
+  position: absolute;
+  text-align: center;
+  display: table-cell;
+  background: linear-gradient(silver, gray);
+  cursor: pointer;
+}
+
+.field:hover {
+  background-color: #818181;
+  box-shadow: 0 0 3px 3px red;
+}
+
+.field.selected1 {
+  box-shadow: 0 0 6px 6px #B1B1B1;
+}
+
+.field.selected2 {
+  box-shadow: 0 0 6px 6px #B1B1B1;
+}
+
+#currentUser {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#currentPlayer {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+}
+
+#info {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  max-width: 140px;
+  text-wrap: normal;
+}
+
+#back {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#draw {
+  left: 200px;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+}
+
+#cards {
+  background: white;
+  padding-top: 6px;
+  padding-left: 6px;
+}
+
+.card {
+   border-radius: 5%;
+   border: 4px solid #222;
+   margin-right: 6px;
+   margin-top: 0px;
+   margin-left: 0px;
+   margin-bottom: 6px;
+   outline: 3px solid #222;
+   outline-offset: -5.5px;
+   cursor: pointer;
+   vertical-align: middle;
+ }
+
+.card.selected {
+  box-shadow: 0 0 2px 2px blue;
+}
+
+.card:hover {
+  box-shadow: 0 0 2px 2px red;
+}
+
+.left > li ~ li {
+  margin-top: 6px;
+}
+
+.left {
+  width: 195px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    text-align: center;
+    background-color: #222;
+    color: silver;
+    padding: 5px;
+    display: block;
+    margin: 0;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+    a:hover {
+      color: white;
+      background: rgba(34, 34, 34, 0.8);
+    }
+
+}
+
+#wrapper {
+  padding-left: 0;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #222;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+#page-content-wrapper {
+  position: relative;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: silver;
+
+  li {
+    line-height: 40px;
+    a {
+      text-decoration: none;
+      color: silver;
+      display: block;
+      font-size: 18px;
+      text-indent: 20px;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  input {
+    margin-left: 40px;
+    color: black;
+  }
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 40px;
+  }
+
+  .sidebar-brand {
+    height: 50px;
+    font-size: 20px;
+    line-height: 60px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+#flexbox {
+  padding: 10px;
+}
+
+@media (min-width: 1040px) {
+  #wrapper {
+    padding-left: 250px;
+  }
+
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+
+  #sidebar-wrapper {
+    width: 250px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+}
+
+@media (min-width: 800px) and (min-height: 650px) {
+  #draw {
+    left: 205px;
+    width: 600px;
+    height: 600px;
+  }
+}

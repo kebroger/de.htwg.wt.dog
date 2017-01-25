@@ -14,6 +14,7 @@ public class Application extends Controller {
 
     static String userMail = "";
 
+    // Angular index
     public static Result index() {
         return ok(indexAngular.render(controller));
     }

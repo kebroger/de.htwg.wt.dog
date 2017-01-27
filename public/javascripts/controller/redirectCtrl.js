@@ -1,11 +1,8 @@
- angular.module('dogApp').controller('RedirectCtrl', function($scope) {
+ angular.module('dogApp').controller('RedirectCtrl', function($scope, RedirectService, $timeout, $window) {
 
-    /**
-        * @desc: Creates new game. Is called on load.
-    **/
-    $scope.init = function() {
+     $scope.redirect = (function() {
+         $window.location.href = '/game';
+     });
 
-    };
-
-    $scope.init();
+     $timeout($scope.redirect, 3000);
 });

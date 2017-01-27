@@ -2,7 +2,7 @@ angular.module('dogApp')
 
 .service('RedirectService', function($http) {
     return {
-        game: function() {
+        goToGame: function() {
             return $http.get('/game');
         }
     };

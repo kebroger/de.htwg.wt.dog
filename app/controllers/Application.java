@@ -28,7 +28,7 @@ public class Application extends Controller {
     }
 
     public static Result signIn(String mail, String password) {
-        userMail = password;
+        userMail = mail;
         return game();
     }
 

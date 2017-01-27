@@ -14,6 +14,5 @@ $(function() {
         function send(){
             socket.send("");
         }
-
     }
 });  

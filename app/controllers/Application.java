@@ -16,7 +16,7 @@ public class Application extends Controller {
 
     // Angular index
     public static Result index() {
-        return ok(indexAngular.render(controller));
+        return ok(index.render("", controller));
     }
 
     public static Result rules() {
